@@ -12,19 +12,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup JDK 14
-      run: |
-          cho ${{ toJson(github) }}
       uses: actions/setup-java@v2
       with:
         java-version: '14'
         distribution: 'adopt'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+    - name: Run echo
+      run: |
+          cho ${{ toJson(github) }}
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
+    # - name: Setup Ruby
+    #   uses: ruby/setup-ruby@v1
+    #   with:
+    #     bundler-cache: true
 
 
