@@ -1,9 +1,14 @@
 name: production
 
-on :
-  push:
+# on :
+#   push:
+#     branches:
+#       - master   
+on:
+  pull_request:
+    types: [closed]
     branches:
-      - master   
+      - release/*
 
 jobs:
   build:
