@@ -1,4 +1,5 @@
 {
     "name": "test",
-    "number": 0
+    "number": 0,
+    "boolean": true
 }
