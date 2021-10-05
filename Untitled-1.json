@@ -1,5 +1,6 @@
 {
     "name": "test",
     "number": 0,
-    "boolean": true
+    "boolean": true,
+    "double": 1.1
 }
