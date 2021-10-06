@@ -10,11 +10,13 @@ on:
     branches:
       - "release/*"
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+
     steps:
     - uses: actions/checkout@v2
     - name: Setup JDK 14
@@ -23,13 +25,10 @@ jobs:
         java-version: '14'
         distribution: 'adopt'
 
-    - name: Run echo
-      run: |
-          cho ${{ toJson(github) }}
-
-    # - name: Setup Ruby
-    #   uses: ruby/setup-ruby@v1
-    #   with:
-    #     bundler-cache: true
-
+    - name: Create Pull Request to Develop
+      if: steps.fastlane_release.outcome == 'success' || steps.fastlane_hotfix.outcome == 'success'
+      uses: repo-sync/pull-request@v2
+      with:
+        destination_branch: "develop"
+        github_token: GITHUB_TOKEN
 
